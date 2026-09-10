@@ -1,4 +1,38 @@
-               <!DOCTYPE html>
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Datang</title>
+</head>
+
+<body>
+
+    <div class="welcome-screen">
+        <h1>Selamat Datang 👋</h1>
+
+        <p>Silakan masukkan nama kamu sebelum melihat portofolio saya.</p>
+
+        <form class="visitor-form">
+            <input
+                type="text"
+                id="visitor-name"
+                name="visitor-name"
+                placeholder="Masukkan nama kamu..."
+                required
+            >
+
+            <button type="submit">
+                Masuk ke Portofolio
+            </button>
+        </form>
+    </div>
+
+</body>
+</html>
+```
+
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -643,7 +677,31 @@
         </div>
 
     </footer>
+<script>
+    const form = document.querySelector(".visitor-form");
+    const welcomeScreen = document.querySelector(".welcome-screen");
+    const visitorName = document.querySelector("#visitor-name");
 
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = visitorName.value.trim();
+
+        if (name === "") {
+            visitorName.focus();
+            return;
+        }
+
+        localStorage.setItem("visitorName", name);
+
+        welcomeScreen.style.transition = "opacity 0.7s ease";
+        welcomeScreen.style.opacity = "0";
+
+        setTimeout(() => {
+            welcomeScreen.style.display = "none";
+        }, 700);
+    });
+</script>
 
 </body>
 </html>
